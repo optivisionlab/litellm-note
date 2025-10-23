@@ -2,7 +2,7 @@ import requests
 
 # --- Cấu hình ---
 AI_API_BASE = "https://api.thucchien.ai"
-AI_API_KEY = "sk-YsqbaPD2sDcftsjdJG6FIA"  # Thay bằng API key của bạn
+AI_API_KEY = "sk-1234"  # Thay bằng API key của bạn
 
 # --- Thực thi ---
 url = f"{AI_API_BASE}/audio/speech"

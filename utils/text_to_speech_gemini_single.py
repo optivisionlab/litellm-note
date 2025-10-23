@@ -6,7 +6,7 @@ from typing import Union, List, Dict
 # --- Cấu hình ---
 # QUAN TRỌNG: Thay 'sk-1234' bằng API key hợp lệ của bạn từ thucchien.ai
 # Lỗi 401 ("Authentication Error") xảy ra khi key này không hợp lệ hoặc bị thiếu.
-AI_API_KEY = "sk-YsqbaPD2sDcftsjdJG6FIA" 
+AI_API_KEY = "sk-1234" 
 
 # --- Model và Endpoint ---
 BASE_URL = "https://api.thucchien.ai/gemini/v1beta/models"
