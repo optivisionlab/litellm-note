@@ -6,6 +6,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+import os
 
 
 # Hàm mới để sinh hoặc sửa ảnh bằng API Google Gemini
@@ -101,7 +102,7 @@ def generate_or_modify_image_gemini(prompt: str, output_filepath: str, api_key: 
     return None
 
 
-api_key = 'sk-1234'
+api_key = os.getenv("API_KEY", "sk-1234")
 
 # --- Ví dụ 1: Sinh ảnh mới từ prompt bằng API Gemini ---
 print("\n--- Ví dụ 1: Sinh ảnh mới từ prompt bằng API Gemini ---")

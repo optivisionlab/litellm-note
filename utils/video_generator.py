@@ -133,7 +133,7 @@ def start_video_with_image(prompt, image_path, model, api_key, **params):
 # -------------------------
 # 🧪 Ví dụ sử dụng: text 2 video
 
-API_KEY = "sk-1234"
+API_KEY = os.getenv("API_KEY", "sk-1234")
 MODEL = "veo-3.0-generate-001"
 PROMPT = "Video of the Vietnamese flag flying in Ba Dinh Square"
 
@@ -146,10 +146,10 @@ if video_id:
 # -------------------------
 # 🧪 Ví dụ sử dụng: image 2 video
 
-API_KEY = "sk-12343"
+API_KEY = os.getenv("API_KEY", "sk-1234")
 MODEL = "veo-3.0-generate-001"
-PROMPT = "Video of the Vietnamese flag flying in Ba Dinh Square"
-path_image = "assets/ba_dinh_hn.jpg"
+PROMPT = "Video of Quang and Anh's wedding dress fitting session"
+path_image = "assets/quang_anh.jpeg"
 
 operation = start_video_with_image(
         prompt=PROMPT,

@@ -3,6 +3,7 @@ import base64
 import json
 import wave
 from typing import List, Dict
+import os
 
 def tts_multi_speakers(
     api_key: str,
@@ -68,8 +69,8 @@ def tts_multi_speakers(
         }
     }
 
-    print(json.dumps(payload))
-    
+    # print(json.dumps(payload))
+    print("===== Call API =======")
     resp = requests.post(url, headers=headers, json=payload)
 
     # Kiểm tra và in ra lỗi chi tiết nếu có
@@ -98,23 +99,33 @@ def tts_multi_speakers(
 # --- VÍ DỤ SỬ DỤNG ---
 # !!! QUAN TRỌNG: Vui lòng thay thế bằng API key hợp lệ của bạn.
 # API key trong ví dụ có thể đã hết hạn.
-api_key = "sk-1234" 
+api_key = os.getenv("API_KEY", "sk-1234")
 model   = "gemini-2.5-flash-preview-tts"
 
 # Cấu hình cho 3 người nói khác nhau (sử dụng các giọng đã biết là hoạt động)
 speakers_config = [
-    {"speaker": "Narrator", "voice": "Kore"},
-    {"speaker": "Wizard", "voice": "Kore"},
-    {"speaker": "Knight", "voice": "Kore"} # Tạm thời dùng lại giọng "Kore" để tránh lỗi
+    {"speaker": "Minh Anh", "voice": "Kore"},
+    {"speaker": "Quốc Trung", "voice": "Puck"},
 ]
 
 # Đoạn hội thoại với tên người nói tương ứng (xóa khoảng trắng thừa ở đầu)
-text = """Narrator: The brave Knight entered the dark cave, his sword held high.
-Knight: Wizard, show yourself! I am not afraid.
-Wizard: (cackles) Foolish mortal! You dare challenge me?"""
+text = '''
+**KỊCH BẢN PODCAST**
+**Chủ đề:** Vai trò của trí tuệ nhân tạo (AI) trong phát triển giáo dục và xã hội
+**Nhân vật:**
+*   **Minh Anh:** Host, người dẫn dắt câu chuyện
+*   **Quốc Trung:** Chuyên gia về AI
+Đoạn hội thoaị như sau:
+**Minh Anh:** Xin chào mừng quý vị và các bạn đã quay trở lại với kênh podcast "Tương Lai Số". Trong thế giới không ngừng biến đổi của chúng ta, trí tuệ nhân tạo, hay AI, đang ngày càng khẳng định vai trò không thể thiếu trong nhiều lĩnh vực. Hôm nay, chúng ta sẽ cùng chuyên gia AI, anh Quốc Trung, thảo luận sâu hơn về chủ đề "Vai trò của AI trong phát triển giáo dục và xã hội". Chào anh Trung!
+**Quốc Trung:** Chào Minh Anh và xin chào quý vị khán giả. Rất vui khi được tham gia chương trình.
+**Minh Anh:** Thưa anh, khi nói về AI trong giáo dục, nhiều người thường nghĩ đến những điều khá xa vời. Anh có thể chia sẻ những ứng dụng thực tế nhất của AI đang thay đổi cách chúng ta dạy và học không?
+**Quốc Trung:** Chắc chắn rồi. Một trong những ứng dụng mạnh mẽ nhất là "cá nhân hóa lộ trình học tập". AI có thể phân tích năng lực, tốc độ tiếp thu và cả những lỗ hổng kiến thức của từng học sinh. Từ đó, hệ thống sẽ tự động đề xuất bài giảng, bài tập phù hợp, giúp các em không bị tụt lại phía sau và cũng không cảm thấy nhàm chán. Hãy tưởng tượng mỗi học sinh có một gia sư ảo 24/7, đó chính là sức mạnh của AI.
+**Minh Anh:** Điều đó thật ấn tượng! Nó phá vỡ hoàn toàn mô hình "một chương trình cho tất cả" truyền thống. Vậy còn vai trò của giáo viên thì sao ạ? Liệu AI có thay thế họ?
+**Quốc Trung:** Đó là một lo ngại phổ biến, nhưng tôi lại có góc nhìn khác. AI không thay thế giáo viên, mà sẽ trở thành một trợ thủ đắc lực. Khi AI đảm nhận các công việc lặp đi lặp lại như chấm bài trắc nghiệm, quản lý tài liệu, giáo viên sẽ có nhiều thời gian hơn để tập trung vào việc truyền cảm hứng, hướng dẫn kỹ năng mềm và tương tác sâu hơn với học sinh. Vai trò của họ được nâng tầm lên thành người cố vấn, người định hướng.
+'''
 
 # Sửa tên file đầu ra cho đúng định dạng
-output_path = "logs/test_multi_speaker_dialogue.mp3"
+output_path = "logs/test_multi_speaker_dialogue.wav"
 
 # Gọi hàm mới
 tts_multi_speakers(api_key=api_key,

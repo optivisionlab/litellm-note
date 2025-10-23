@@ -6,6 +6,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+import os
 
 
 # sinh hình ảnh theo kiểu chat, nghĩa là có thể mô tả qua 1 nhân vật có trước
@@ -85,7 +86,7 @@ def api_chat_completions(content: str, image_filename: str, api_key: str, input_
 
 
 
-api_key = 'sk-1234'
+api_key = os.getenv("API_KEY", "sk-1234")
 
 # # --- Ví dụ 1: Chỉ với nội dung văn bản (tương tự cURL bạn cung cấp) ---
 # print("\n--- Ví dụ 1: Chỉ với nội dung văn bản ---")

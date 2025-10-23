@@ -6,6 +6,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+import os
 
 
 def generate_image_from_prompt(prompt: str, image_filename: str, 
@@ -69,7 +70,7 @@ making each of his heists look like a grand magic show.
 """
 
 output_image_filename = "assets/anime_thief.png"
-api_key = 'sk-1234'
+api_key = os.getenv("API_KEY", "sk-1234")
 
 generate_image_from_prompt(prompt_text, output_image_filename, api_key, n=1, aspect_ratio="1:1")
 

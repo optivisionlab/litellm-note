@@ -2,6 +2,7 @@ import requests
 import base64
 import json
 import wave
+import os
 
 def tts_two_speakers(
     api_key: str,
@@ -96,7 +97,7 @@ def tts_two_speakers(
     print(f"Saved audio to {output_path}")
 
 
-api_key = "sk-1234"
+api_key = os.getenv("API_KEY", "sk-1234")
 model   = "gemini-2.5-flash-preview-tts"
 
 speaker1 = "Speaker1"
@@ -109,7 +110,7 @@ text = """Make Speaker1 sound tired and bored, and Speaker2 sound excited and ha
 Speaker1: So... what's on the agenda today?
 Speaker2: You're never going to guess!"""
 
-output_path = "test_dialogue.mp3"
+output_path = "logs/test_dialogue.wav"
 
 tts_two_speakers(api_key, model,
                  speaker1, voice1,
